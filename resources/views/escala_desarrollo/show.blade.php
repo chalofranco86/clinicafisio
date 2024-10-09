@@ -93,6 +93,7 @@
     <!-- Botón de regreso -->
     <div class="form-group">
         <a href="{{ route('escala_desarrollo.index') }}" class="btn btn-secondary">Volver</a>
+        <button onclick="window.location.href='{{ route('generate.pdf', ['paciente_id' => $escala->paciente_id]) }}'">Generar PDF</button>
     </div>
 </div>
 @endsection

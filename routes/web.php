@@ -18,6 +18,8 @@ Route::resource('entrevistapeds', EntrevistapedController::class); // Agregar es
 Route::resource('evaluaciones', EvaluacionController::class);
 Route::resource('escala_desarrollo', EscalaDesarrolloController::class);
 
+Route::get('/generate-pdf/{paciente_id}', [EscalaDesarrolloController::class, 'generatePDF'])->name('generate.pdf');
+
 
 // Ruta para la página principal
 Route::get('/', function () {
