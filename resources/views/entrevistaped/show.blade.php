@@ -43,6 +43,7 @@
                 <div class="card-footer">
                     <a href="{{ route('entrevistapeds.edit', $entrevista->id) }}" class="btn btn-primary">Editar</a>
                     <a href="{{ route('entrevistapeds.index') }}" class="btn btn-default">Regresar</a>
+                    <a href="{{ route('entrevistapeds.pdf', $entrevista->id) }}" class="btn btn-secondary">Generar PDF</a>
                 </div>
             </div>
         </div>

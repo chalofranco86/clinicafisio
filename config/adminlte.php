@@ -318,7 +318,7 @@ return [
         [
             'text' => 'Pacientes',
             'url' => 'pacientes',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fa fa-flag',
             'label' => 4,
             'label_color' => 'success',
         ],
@@ -334,10 +334,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'ANTECEDENTES',
+                    'icon_color' => 'red',
                     'url' => 'antecedentes',
                 ],
                 [
                     'text' => 'PEDIATRIA',
+                    'icon_color' => 'cyan',
                     'url' => '#',
                     'submenu' => [
                         [
@@ -357,10 +359,7 @@ return [
                         ],
                     ],
                 ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
+
             ],
         ],
         ['header' => 'labels'],

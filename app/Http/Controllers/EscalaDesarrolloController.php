@@ -155,7 +155,8 @@ class EscalaDesarrolloController extends Controller
     {
         $escala = EscalaDesarrollo::findOrFail($id);
         $pacientes = Paciente::all();
-        return view('escala_desarrollo.edit', compact('escala', 'pacientes'));
+        $medicos = Medico::all(); // Obtener lista de médicos
+        return view('escala_desarrollo.edit', compact('escala', 'pacientes', 'medicos'));
     }
 
     /**
@@ -165,19 +166,55 @@ class EscalaDesarrolloController extends Controller
     {
         $validatedData = $request->validate([
             'paciente_id' => 'required|exists:pacientes,id',
+            'medico_id' => 'required|exists:medicos,id',
+            
             // Validaciones para todos los campos booleanos
-            'motora_gruesa_1_15' => 'required|boolean',
-            'motora_fina_1_15' => 'required|boolean',
-            'cognoscitiva_1_15' => 'required|boolean',
-            'lenguaje_1_15' => 'required|boolean',
-            'socio_afectiva_1_15' => 'required|boolean',
-            'habitos_salud_1_15' => 'required|boolean',
-            // Repetir las validaciones para todos los campos
+            'motora_gruesa_1_15' => 'nullable|boolean',
+            'motora_fina_1_15' => 'nullable|boolean',
+            'cognoscitiva_1_15' => 'nullable|boolean',
+            'lenguaje_1_15' => 'nullable|boolean',
+            'socio_afectiva_1_15' => 'nullable|boolean',
+            'habitos_salud_1_15' => 'nullable|boolean',
+            
+            'motora_gruesa_15_2' => 'nullable|boolean',
+            'motora_fina_15_2' => 'nullable|boolean',
+            'cognoscitiva_15_2' => 'nullable|boolean',
+            'lenguaje_15_2' => 'nullable|boolean',
+            'socio_afectiva_15_2' => 'nullable|boolean',
+            'habitos_salud_15_2' => 'nullable|boolean',
+            
+            'motora_gruesa_2_25' => 'nullable|boolean',
+            'motora_fina_2_25' => 'nullable|boolean',
+            'cognoscitiva_2_25' => 'nullable|boolean',
+            'lenguaje_2_25' => 'nullable|boolean',
+            'socio_afectiva_2_25' => 'nullable|boolean',
+            'habitos_salud_2_25' => 'nullable|boolean',
+            
+            'motora_gruesa_2_3' => 'nullable|boolean',
+            'motora_fina_2_3' => 'nullable|boolean',
+            'cognoscitiva_2_3' => 'nullable|boolean',
+            'lenguaje_2_3' => 'nullable|boolean',
+            'socio_afectiva_2_3' => 'nullable|boolean',
+            'habitos_salud_2_3' => 'nullable|boolean',
+            
+            'motora_gruesa_3_4' => 'nullable|boolean',
+            'motora_fina_3_4' => 'nullable|boolean',
+            'cognoscitiva_3_4' => 'nullable|boolean',
+            'lenguaje_3_4' => 'nullable|boolean',
+            'socio_afectiva_3_4' => 'nullable|boolean',
+            'habitos_salud_3_4' => 'nullable|boolean',
+            
+            'motora_gruesa_4_5' => 'nullable|boolean',
+            'motora_fina_4_5' => 'nullable|boolean',
+            'cognoscitiva_4_5' => 'nullable|boolean',
+            'lenguaje_4_5' => 'nullable|boolean',
+            'socio_afectiva_4_5' => 'nullable|boolean',
+            'habitos_salud_4_5' => 'nullable|boolean',
         ]);
-
+    
         $escala = EscalaDesarrollo::findOrFail($id);
         $escala->update($validatedData);
-
+    
         return redirect()->route('escala_desarrollo.index')->with('success', 'Escala de desarrollo actualizada exitosamente.');
     }
 

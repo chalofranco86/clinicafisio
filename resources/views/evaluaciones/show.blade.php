@@ -51,5 +51,6 @@
     <p>{{ $evaluacion->observaciones }}</p>
 
     <a href="{{ route('evaluaciones.index') }}" class="btn btn-primary">Regresar a Evaluaciones</a>
+    <a href="{{ route('evaluaciones.pdf', $evaluacion->id) }}" class="btn btn-secondary">Generar PDF</a>
 </div>
 @endsection

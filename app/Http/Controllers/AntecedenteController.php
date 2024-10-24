@@ -6,6 +6,7 @@ use App\Models\Antecedente;
 use App\Models\Paciente;
 use App\Models\Medico; // Importa el modelo Medico
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AntecedenteController extends Controller
 {
@@ -82,11 +83,23 @@ class AntecedenteController extends Controller
             'ayudaf' => 'nullable|string',
             'camillasi' => 'nullable|string',
             'camillasf' => 'nullable|string',
+            'libre' => 'nullable|string',
+            'claudicante' => 'nullable|string',
+            'con_ayuda' => 'nullable|string',
+            'espasticas' => 'nullable|string',
+            'ataxica' => 'nullable|string',
+            'otros2' => 'nullable|string',
+            'sitio' => 'nullable|string',
+            'quelaide' => 'nullable|string',
+            'retractil' => 'nullable|string',
+            'abierta' => 'nullable|string',
+            'con_adherencia' => 'nullable|string',
+            'hipertrofica' => 'nullable|string',
         ]);
-
+    
         // Crear un nuevo antecedente
         Antecedente::create($request->all());
-
+    
         // Redirigir a la lista de antecedentes con un mensaje de éxito
         return redirect()->route('antecedentes.index')->with('success', 'Antecedente creado con éxito.');
     }
@@ -193,5 +206,11 @@ class AntecedenteController extends Controller
 
         // Redirigir a la lista de antecedentes con un mensaje de éxito
         return redirect()->route('antecedentes.index')->with('success', 'Antecedente eliminado con éxito.');
+    }
+    public function generatePDF($id)
+    {
+        $antecedente = Antecedente::with('paciente', 'medico')->findOrFail($id);
+        $pdf = PDF::loadView('antecedentes.pdf', compact('antecedente'));
+        return $pdf->download('antecedente.pdf');
     }
 }

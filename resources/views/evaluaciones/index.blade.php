@@ -26,7 +26,12 @@
                     <td>
                         <a href="{{ route('evaluaciones.edit', $evaluacion) }}" class="btn btn-warning">Editar</a>
                         <a href="{{ route('evaluaciones.show', $evaluacion->id) }}" class="btn btn-info">Ver Detalles</a>
-
+                        <!-- Formulario para eliminar -->
+                        <form action="{{ route('evaluaciones.destroy', $evaluacion->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta evaluación?');">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

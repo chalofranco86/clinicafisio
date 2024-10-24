@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Entrevistaped;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class EntrevistapedController extends Controller
 {
@@ -100,4 +101,11 @@ class EntrevistapedController extends Controller
         // Redirigir o mostrar mensaje de éxito
         return redirect()->route('entrevistapeds.index')->with('success', 'Entrevista eliminada exitosamente.');
     }
+    public function generatePDF($id)
+    {
+        $entrevista = Entrevistaped::with('paciente')->findOrFail($id);
+        $pdf = PDF::loadView('entrevistaped.pdf', compact('entrevista'));
+        return $pdf->download('entrevista.pdf');
+    }
+
 }
